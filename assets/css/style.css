@@ -64,6 +64,7 @@ section {
     background: var(--bg2-card);
     padding: 1rem;
     filter: contrast(1.4);
+    transform: rotateY(-180deg);
 }
 .back {
     background: var(--bg1-card);
@@ -72,4 +73,57 @@ section {
 }
 .active {
     transform: rotateY(180deg);
+}
+
+
+/*==========Media Query big screens==========*/
+@media (min-width: 1600px) {
+    h1 {
+        font-size: 4rem;
+        margin-block-start: 4rem;
+        margin-block-end: 4rem;
+    }
+    section {
+        grid-template-columns: repeat(8, 7rem);
+        grid-template-rows: repeat(8, 7rem);
+        grid-gap: 4rem;
+    }
+    .face, .back {
+        width: 130%;
+        height: 130%;
+    }
+
+}
+
+
+/*==========Media Query small screens==========*/
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 1.7rem;
+        margin-block-start: 5rem;
+        margin-block-end: 4rem;
+    }
+    section {
+        grid-template-columns: repeat(8, 4rem);
+        grid-template-rows: repeat(8, 4rem);
+        grid-gap: 1.2rem;
+    }
+
+}
+
+
+/*==========Media Query small screens mobile==========*/
+@media (max-width: 768px) {
+    h1 {
+        margin-block-start: 2rem;
+        margin-block-end: 2rem;
+    }
+    section {
+        height: 100vh;
+        grid-template-columns: repeat(4, 4rem);
+        grid-template-rows: repeat(4, 4rem);
+        grid-gap: 1rem;
+        margin-block-end: 2rem;
+    }
+
 }
