@@ -1,6 +1,6 @@
 const section = document.querySelector('section')
 const playerCount = document.querySelector('span')
-const playerLives = 0
+let playerLives = 20
 
 playerCount.textContent = playerLives
 
@@ -147,7 +147,7 @@ const cardGenerator = () => {
 
     const cardData = randomize()
 
-    cardData.forEach(item => {
+    cardData.forEach( item => {
         
         const card = document.createElement('div')
         const face = document.createElement('img')
@@ -158,12 +158,78 @@ const cardGenerator = () => {
         back.classList = 'back'
 
         face.src = item.imgSrc
+        card.setAttribute('name', item.name)
 
         section.appendChild(card)
         card.appendChild(face)
         card.appendChild(back)
 
+        card.addEventListener('click', e => {
+            card.classList.toggle('active')
+            checkCards(e)
+        })
+
     })
+
+}
+
+const checkCards = e => {
+
+    console.log(e)
+    const clickedCard = e.target
+    clickedCard.classList.add('flip')
+    const flippedCards = document.querySelectorAll('.flip')
+    const toggleCard = document.querySelectorAll('.active')
+
+    if(flippedCards.length === 2) {
+        if(flippedCards[0].getAttribute('name') === flippedCards[1].getAttribute('name')) {
+            flippedCards.forEach(card => {
+                card.classList.remove('flip')
+                card.style.pointerEvents = 'none'
+            })
+        } else {
+            flippedCards.forEach(card => {
+                card.classList.remove('flip')
+                setTimeout( () => card.classList.remove('active'), 1000)
+            })
+
+            playerLives--;
+            playerCount.textContent = playerLives;
+
+            if(playerLives === 0) {
+                restart('Não foi dessa vez, tente novamente.')
+            }
+        }
+    }
+
+    if(toggleCard.length === 32) {
+        restart('Parabéns, você acertou todos.')
+    }
+}
+
+const restart = (text) => {
+
+    let cardData = randomize()
+    let faces = document.querySelectorAll('.face')
+    let cards = document.querySelectorAll('.card')
+
+    section.style.pointerEvents = 'none'
+
+    cardData.forEach((item, index) => {
+        cards[index].classList.remove('active')
+        
+        setTimeout(() => {
+            cards[index].style.pointerEvents = 'all'
+            faces[index].src = item.imgSrc
+            cards[index].setAttribute('name', item.name)
+            section.style.pointerEvents = 'all'
+        }, 1000)
+    })
+
+    playerLives = 20
+    playerCount.textContent = playerLives
+
+    setTimeout(() => window.alert(text), 100)
 
 }
 
