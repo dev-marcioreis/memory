@@ -31,14 +31,15 @@ html {
     background: var(--bg1-card);
 }
 h1 {
-    color: hsl(0, 0%, 100%);
-    font-weight: 200;
+    color: hsl(0, 0%, 0%);
+    font-weight: 500;
     font-size: 2rem;
     text-transform: capitalize;
     margin-block-start: 3rem;
     margin-block-end: 3rem;
 }
 section {
+    height: 100vh;
     display: grid;
     grid-template-columns: repeat(8, 6rem);
     grid-template-rows: repeat(8, 6rem);
@@ -119,10 +120,9 @@ section {
         margin-block-end: 2rem;
     }
     section {
-        height: 100vh;
-        grid-template-columns: repeat(4, 4rem);
-        grid-template-rows: repeat(4, 4rem);
-        grid-gap: 1rem;
+        grid-template-columns: repeat(4, 5rem);
+        grid-template-rows: repeat(4, 5rem);
+        grid-gap: .5rem;
         margin-block-end: 2rem;
     }
 
