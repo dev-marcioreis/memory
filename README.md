@@ -6,7 +6,7 @@ Este projeto é um jogo da memory.
 
 ## 🚀 Sendo aperfeiçoado...
 
-## 📋 Técnologias
+## 📋 Tecnologias
 JavaScript
 
 ## ✒️ Autor
